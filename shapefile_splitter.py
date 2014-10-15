@@ -29,7 +29,10 @@ for row in tile_cursor:
     arcpy.SelectLayerByAttribute_management("tempfile", "NEW_SELECTION", tileQ) #selects the feature to be copied.
     arcpy.CopyFeatures_management("tempfile",outputpath) #Creates the new shapefile. 
     
-
+    #example command line string: lasclip -i path/*.laz -poly poly.shp -out path/tilename.laz 
+    
+    commandString = lazToolFolder + "lasclip -i " + lazFolder +"*.laz " + "-poly " + outputpath + " -out " + lazOut + tileName + ".laz" 
+    cmd(commandString)
 
 del tile_cursor
 del row
