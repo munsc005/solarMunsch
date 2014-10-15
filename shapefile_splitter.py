@@ -8,7 +8,7 @@ import arcpy, sys, cmd
 ##User inputs--------
 inTiles = sys.argv[1]  #file to split
 outFolder = sys.argv[2]        #location of new feature classes
-lazToolFolder = sys.argv[3]
+lasToolsFolder = sys.argv[3]
 lazFolder = sys.argv[4]     #location of lAZ files to be clipped to DNR tile scheme
 lazOut = sys.argv[5]        #Location of clipped LAZ files. 
 
@@ -31,7 +31,7 @@ for row in tile_cursor:
     
     #example command line string: lasclip -i path/*.laz -poly poly.shp -out path/tilename.laz 
     
-    commandString = lazToolFolder + "lasclip -i " + lazFolder +"*.laz " + "-poly " + outputpath + " -out " + lazOut + tileName + ".laz" 
+    commandString = lasToolsFolder + "lasclip -i " + lazFolder +"*.laz " + "-poly " + outputpath + " -out " + lazOut + tileName + ".laz -merged" 
     cmd(commandString)
 
 del tile_cursor
