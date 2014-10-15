@@ -3,11 +3,15 @@
 
 #imports-----------
 
-import arcpy, sys
+import arcpy, sys, cmd
 
 ##User inputs--------
 inTiles = sys.argv[1]  #file to split
 outFolder = sys.argv[2]        #location of new feature classes
+lazToolFolder = sys.argv[3]
+lazFolder = sys.argv[4]     #location of lAZ files to be clipped to DNR tile scheme
+lazOut = sys.argv[5]        #Location of clipped LAZ files. 
+
 
 #Create search cursor for input data.
 tile_cursor = arcpy.SearchCursor(inTiles)
@@ -24,6 +28,8 @@ for row in tile_cursor:
     print tileQ
     arcpy.SelectLayerByAttribute_management("tempfile", "NEW_SELECTION", tileQ) #selects the feature to be copied.
     arcpy.CopyFeatures_management("tempfile",outputpath) #Creates the new shapefile. 
+    
+
 
 del tile_cursor
 del row
