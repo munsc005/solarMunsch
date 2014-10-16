@@ -3,7 +3,7 @@
 
 #imports-----------
 
-import arcpy, sys, cmd
+import arcpy, sys, subprocess
 
 ##User inputs--------
 inTiles = sys.argv[1]  #file to split
@@ -32,7 +32,7 @@ for row in tile_cursor:
     #example command line string: lasclip -i path/*.laz -poly poly.shp -out path/tilename.laz 
     
     commandString = lasToolsFolder + "lasclip -i " + lazFolder +"*.laz " + "-poly " + outputpath + " -out " + lazOut + tileName + ".laz -merged" 
-    cmd(commandString)
+    subprocess.Popen(commandString)
 
 del tile_cursor
 del row
